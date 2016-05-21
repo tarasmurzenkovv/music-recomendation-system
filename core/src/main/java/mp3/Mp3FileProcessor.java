@@ -9,26 +9,33 @@ import utils.ArrayUtils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+
+import static utils.ArrayUtils.appendToArray;
 
 public class Mp3FileProcessor {
+
+    private static final Function<Complex, Double> getFrequency = complex -> {
+        double im = complex.getImaginary();
+        double real = complex.getReal();
+        return Math.pow(im * im + real * real, 2);
+    };
+
     public static double[] computeFrequencies(Complex[] fourierSpectre) {
-        double[] computedFrequencies = new double[fourierSpectre.length];
-        for (int i = 0; i < fourierSpectre.length; i++) {
-            double realPart = fourierSpectre[i].getReal();
-            double imgPart = fourierSpectre[i].getImaginary();
-            computedFrequencies[i] = Math.pow(realPart * realPart + imgPart * imgPart, 0.5);
-        }
-        return ArrayUtils.sortInDescendingOrder(computedFrequencies);
+        Comparator<Double> normal = Double::compare;
+        Comparator<Double> reversed = normal.reversed();
+        List<Double> frequencies = Arrays.stream(fourierSpectre).parallel().map(getFrequency).collect(Collectors.toList());
+        Collections.sort(frequencies, reversed);
+        return frequencies.parallelStream().mapToDouble(Double::doubleValue).toArray();
     }
 
     public static Complex[] performFftOnTheGivenMp3File(String pathToMp3File) throws FileNotFoundException, BitstreamException, DecoderException {
         short[] decodedBytes = Mp3FileProcessor.getDecodedMp3Stream(pathToMp3File);
         double[] decoded = ArrayUtils.transformToDoubleArrayWithLengthOfPowerOfTwo(decodedBytes);
         FastFourierTransformer fastFourierTransformer = new FastFourierTransformer(DftNormalization.STANDARD);
-        Complex[] result = fastFourierTransformer.transform(decoded, TransformType.FORWARD);
-        return result;
+        return fastFourierTransformer.transform(decoded, TransformType.FORWARD);
     }
 
     public static short[] getDecodedMp3Stream(String pathToMp3File) throws FileNotFoundException, BitstreamException, DecoderException {
@@ -39,7 +46,7 @@ public class Mp3FileProcessor {
         while ((frameHeader = bitStream.readFrame()) != null) {
             SampleBuffer output = (SampleBuffer) decoder.decodeFrame(frameHeader, bitStream); //returns the next 2304 samples
             short[] next = output.getBuffer();
-            decodedMp3StreamInBytes = ArrayUtils.appendToArray(decodedMp3StreamInBytes, next);
+            decodedMp3StreamInBytes = appendToArray(decodedMp3StreamInBytes, next);
             bitStream.closeFrame();
         }
         return decodedMp3StreamInBytes;

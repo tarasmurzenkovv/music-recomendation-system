@@ -3,15 +3,24 @@ package utils;
 import java.util.Arrays;
 
 public class ArrayUtils {
+
+    @FunctionalInterface
+    private interface Normalize<Double> {
+        Double apply(Double givenNumber, Double meanOfTheArray, Double varianceOfTheArray);
+    }
+
+    private static Normalize<Double> normalize = (element, mean, variance) -> (element - mean) / Math.pow(variance, 0.5);
+
+
     public static double[] normalizeArray(double[] array) {
         double mean = Arrays.stream(array).average().getAsDouble();
         double variance = Arrays.stream(array).map(a -> Math.pow(a - mean, 2)).sum();
-        return Arrays.stream(array).map(a -> (a - mean)).map(a -> a / (Math.pow(variance, 0.5))).toArray();
+        return Arrays.stream(array).parallel().map(element -> normalize.apply(element, mean, variance)).toArray();
     }
 
     public static double[] sortInDescendingOrder(double[] array) {
         int len = array.length;
-        double[] reversedOrder = new double[array.length];
+        double[] reversedOrder = new double[len];
         Arrays.sort(array);
         for (int i = 0; i < len; i++) {
             reversedOrder[i] = array[len - i - 1];
@@ -41,7 +50,7 @@ public class ArrayUtils {
         return appendToArray(transformedData, arrayWithZeroes);
     }
 
-    public static double[] createArrayWithZeroesWithGivenLength(int length) {
+    private static double[] createArrayWithZeroesWithGivenLength(int length) {
         double[] arrayWithZeros = new double[length];
         for (int i = 0; i < length; i++) {
             arrayWithZeros[i] = 0;
@@ -65,7 +74,7 @@ public class ArrayUtils {
         return finalArray;
     }
 
-    public static double[] appendToArray(double[] arrayWhereToAppend, double[] arrayWhatToAppend) {
+    private static double[] appendToArray(double[] arrayWhereToAppend, double[] arrayWhatToAppend) {
 
         int aLen = arrayWhereToAppend.length;
         int bLen = arrayWhatToAppend.length;
