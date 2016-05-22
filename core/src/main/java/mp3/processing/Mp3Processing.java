@@ -1,9 +1,9 @@
 package mp3.processing;
 
-import com.sun.xml.internal.ws.client.AsyncResponseImpl;
 import mp3.dtos.Mp3FileInformationDto;
 import org.apache.log4j.Logger;
 
+import java.io.File;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +23,26 @@ public class Mp3Processing {
         try {
             for (Path pathToFile : pathsToFiles) {
                 Future<Mp3FileInformationDto> expectedResult = threadPool.submit(new ProcessingTask(pathToFile.toString()));
+                expectedResults.add(expectedResult);
+            }
+            for (Future<Mp3FileInformationDto> future : expectedResults) {
+                dtos.add(future.get());
+            }
+            return dtos;
+        } catch (InterruptedException | ExecutionException e) {
+            logger.error("Exception occurred during batch processing of files. Exception: ", e);
+            threadPool.shutdown();
+            return null;
+        }
+    }
+
+    public static List<Mp3FileInformationDto> processInBatch(File[] pathsToFiles) {
+
+        List<Mp3FileInformationDto> dtos = new ArrayList<>();
+        List<Future<Mp3FileInformationDto>> expectedResults = new ArrayList<>();
+        try {
+            for (File file : pathsToFiles) {
+                Future<Mp3FileInformationDto> expectedResult = threadPool.submit(new ProcessingTask(file.getAbsolutePath()));
                 expectedResults.add(expectedResult);
             }
             for (Future<Mp3FileInformationDto> future : expectedResults) {

@@ -18,7 +18,7 @@ public class ProcessingTask implements Callable<Mp3FileInformationDto> {
     private final static Logger logger = Logger.getLogger(ProcessingTask.class);
     private Path pathToFile;
 
-    public ProcessingTask(String pathToFile) {
+    ProcessingTask(String pathToFile) {
         this.pathToFile = Paths.get(pathToFile);
     }
 
@@ -38,6 +38,4 @@ public class ProcessingTask implements Callable<Mp3FileInformationDto> {
             return null;
         }
     }
-
-
 }
