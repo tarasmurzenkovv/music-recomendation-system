@@ -1,15 +1,15 @@
-package mp3;
+package mp3.utils;
 
 import javazoom.jl.player.Player;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 
-public class AudioFilePlayer {
+public class Mp3Player {
     private String filename;
     private Player player;
 
-    public AudioFilePlayer(String filename) {
+    public Mp3Player(String filename) {
         this.filename = filename;
     }
 

@@ -1,9 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-import static utils.ArrayUtils.createArrayWithLengthOfPowerOfTwoByAddingZeroes;
-import static utils.ArrayUtils.normalizeArray;
-import static utils.ArrayUtils.sortInDescendingOrder;
+import static utils.ArrayUtils.*;
 
 public class ArrayUtilsTest {
     @Test
@@ -26,18 +24,24 @@ public class ArrayUtilsTest {
     }
 
     @Test
-    public void testDescendingSorting() {
-        double[] givenArray = new double[]{1.0, -1.0, 6.0, 5.0};
-        double[] actualArray = sortInDescendingOrder(givenArray);
-        double[] expectedArray = new double[]{6.0, 5.0, 1.0, -1.0};
-        Assert.assertArrayEquals(actualArray, expectedArray, -.0001);
-    }
-
-    @Test
     public void testNormalizeArray() {
         double[] givenArray = new double[]{1.0, -1.0, 6.0, 5.0};
         double[] actualArray = normalizeArray(givenArray);
         double[] expectedArray = new double[]{-0.30579641983136324, -0.6552780424957785, 0.5679076368296746, 0.39316682549746707};
         Assert.assertArrayEquals(actualArray, expectedArray, -.0001);
+    }
+
+    @Test
+    public void testTrimArray() {
+        double[] givenArray = new double[]{1.0, -1.0, 6.0, 5.0};
+        double[] expectedArray = new double[]{1.0, -1.0};
+        Assert.assertArrayEquals(getTrimmedNumberOfElements(givenArray, 2), expectedArray, -.0001);
+    }
+
+    @Test
+    public void testSortInDescendingOrder() {
+        double[] givenArray = new double[]{1.0, -1.0, 6.0, 5.0};
+        double[] expectedArray = new double[]{6.0, 5.0, 1.0, -1.0};
+        Assert.assertArrayEquals(sortInDescendingOrder(givenArray), expectedArray, -.0001);
     }
 }

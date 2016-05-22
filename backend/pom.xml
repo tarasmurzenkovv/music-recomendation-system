@@ -26,6 +26,7 @@
             <groupId>core</groupId>
             <artifactId>core</artifactId>
             <version>${core}</version>
+            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
@@ -48,4 +49,6 @@
             <version>${liquibase}</version>
         </dependency>
     </dependencies>
+
+
 </project>

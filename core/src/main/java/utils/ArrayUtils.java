@@ -11,21 +11,18 @@ public class ArrayUtils {
 
     private static Normalize<Double> normalize = (element, mean, variance) -> (element - mean) / Math.pow(variance, 0.5);
 
-
     public static double[] normalizeArray(double[] array) {
         double mean = Arrays.stream(array).average().getAsDouble();
         double variance = Arrays.stream(array).map(a -> Math.pow(a - mean, 2)).sum();
         return Arrays.stream(array).parallel().map(element -> normalize.apply(element, mean, variance)).toArray();
     }
 
-    public static double[] sortInDescendingOrder(double[] array) {
-        int len = array.length;
-        double[] reversedOrder = new double[len];
-        Arrays.sort(array);
-        for (int i = 0; i < len; i++) {
-            reversedOrder[i] = array[len - i - 1];
+    public static double[] getTrimmedNumberOfElements(double[] arrayToTrim, int numberToLeave) {
+        double[] trimmedArray = new double[numberToLeave];
+        for (int i = 0; i < numberToLeave; i++) {
+            trimmedArray[i] = arrayToTrim[i];
         }
-        return reversedOrder;
+        return trimmedArray;
     }
 
     public static double[] transformToDoubleArrayWithLengthOfPowerOfTwo(short[] decodedBytes) {
@@ -84,5 +81,15 @@ public class ArrayUtils {
         System.arraycopy(arrayWhatToAppend, 0, finalArray, aLen, bLen);
 
         return finalArray;
+    }
+
+    public static double[] sortInDescendingOrder(double[] array) {
+        int len = array.length;
+        double[] reversedOrder = new double[array.length];
+        Arrays.sort(array);
+        for (int i = 0; i < len; i++) {
+            reversedOrder[i] = array[len - i - 1];
+        }
+        return reversedOrder;
     }
 }

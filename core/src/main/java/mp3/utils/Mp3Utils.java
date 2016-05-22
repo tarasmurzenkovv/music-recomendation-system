@@ -1,6 +1,7 @@
-package mp3;
+package mp3.utils;
 
 import javazoom.jl.decoder.*;
+import mp3.dtos.Mp3FileInformationDto;
 import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.transform.DftNormalization;
 import org.apache.commons.math3.transform.FastFourierTransformer;
@@ -9,30 +10,27 @@ import utils.ArrayUtils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.*;
-import java.util.function.Function;
-import java.util.stream.Collectors;
+import java.util.HashMap;
+import java.util.Map;
 
-import static utils.ArrayUtils.appendToArray;
+import static utils.ArrayUtils.getTrimmedNumberOfElements;
+import static utils.ArrayUtils.sortInDescendingOrder;
 
-public class Mp3FileProcessor {
+public class Mp3Utils {
 
-    private static final Function<Complex, Double> getFrequency = complex -> {
-        double im = complex.getImaginary();
-        double real = complex.getReal();
-        return Math.pow(im * im + real * real, 2);
-    };
-
-    public static double[] computeFrequencies(Complex[] fourierSpectre) {
-        Comparator<Double> normal = Double::compare;
-        Comparator<Double> reversed = normal.reversed();
-        List<Double> frequencies = Arrays.stream(fourierSpectre).parallel().map(getFrequency).collect(Collectors.toList());
-        Collections.sort(frequencies, reversed);
-        return frequencies.parallelStream().mapToDouble(Double::doubleValue).toArray();
+    public static double[] computeFrequencies(Complex[] fourierSpectre, int topNumber) {
+        double[] computedFrequencies = new double[fourierSpectre.length];
+        for (int i = 0; i < fourierSpectre.length; i++) {
+            double realPart = fourierSpectre[i].getReal();
+            double imgPart = fourierSpectre[i].getImaginary();
+            computedFrequencies[i] = Math.pow(realPart * realPart + imgPart * imgPart, 0.5);
+        }
+        sortInDescendingOrder(computedFrequencies);
+        return getTrimmedNumberOfElements(computedFrequencies, topNumber);
     }
 
     public static Complex[] performFftOnTheGivenMp3File(String pathToMp3File) throws FileNotFoundException, BitstreamException, DecoderException {
-        short[] decodedBytes = Mp3FileProcessor.getDecodedMp3Stream(pathToMp3File);
+        short[] decodedBytes = Mp3Utils.getDecodedMp3Stream(pathToMp3File);
         double[] decoded = ArrayUtils.transformToDoubleArrayWithLengthOfPowerOfTwo(decodedBytes);
         FastFourierTransformer fastFourierTransformer = new FastFourierTransformer(DftNormalization.STANDARD);
         return fastFourierTransformer.transform(decoded, TransformType.FORWARD);
@@ -46,7 +44,7 @@ public class Mp3FileProcessor {
         while ((frameHeader = bitStream.readFrame()) != null) {
             SampleBuffer output = (SampleBuffer) decoder.decodeFrame(frameHeader, bitStream); //returns the next 2304 samples
             short[] next = output.getBuffer();
-            decodedMp3StreamInBytes = appendToArray(decodedMp3StreamInBytes, next);
+            decodedMp3StreamInBytes = ArrayUtils.appendToArray(decodedMp3StreamInBytes, next);
             bitStream.closeFrame();
         }
         return decodedMp3StreamInBytes;
@@ -64,5 +62,11 @@ public class Mp3FileProcessor {
             bitStream.closeFrame();
         }
         return frameHeaderVsBytes;
+    }
+
+    public static String collectInformationAboutTrack(String pathToMp3File) {
+        Mp3FileInformationDto informationDto = new Mp3FileInformationDto();
+        informationDto.setTrackName(pathToMp3File);
+        return informationDto.toString();
     }
 }
