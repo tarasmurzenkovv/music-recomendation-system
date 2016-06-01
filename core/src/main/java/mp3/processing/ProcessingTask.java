@@ -34,7 +34,8 @@ public class ProcessingTask implements Callable<Mp3FileInformationDto> {
             return informationDto;
 
         } catch (FileNotFoundException | BitstreamException | DecoderException e) {
-            logger.error(String.format("Unable to process the given file %s . Null will be returned", pathToFile), e);
+            String errorMessage = String.format("Unable to process the given file %s . Null will be returned", pathToFile);
+            logger.error(errorMessage, e);
             return null;
         }
     }
