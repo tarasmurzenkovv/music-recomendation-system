@@ -16,6 +16,33 @@ public class Mp3Processing {
     private final static Logger logger = Logger.getLogger(Mp3Processing.class);
     private final static ExecutorService threadPool = Executors.newCachedThreadPool();
 
+    public static Mp3FileInformationDto processTrack(Path pathToFile) {
+        Mp3FileInformationDto mp3FileInformationDto = null;
+
+        Future<Mp3FileInformationDto> expectedResult = threadPool.submit(new ProcessingTask(pathToFile.toString()));
+        try {
+            mp3FileInformationDto = expectedResult.get();
+        } catch (InterruptedException | ExecutionException e) {
+            logger.error("Exception occurred during processing of file. Exception: ", e);
+            threadPool.shutdown();
+        }
+        return mp3FileInformationDto;
+    }
+
+    public static Mp3FileInformationDto processTrack(File file) {
+        Mp3FileInformationDto mp3FileInformationDto = null;
+
+        Future<Mp3FileInformationDto> expectedResult = threadPool.submit(new ProcessingTask(file.getAbsolutePath()));
+        try {
+            mp3FileInformationDto = expectedResult.get();
+        } catch (InterruptedException | ExecutionException e) {
+            logger.error("Exception occurred during processing of file. Exception: ", e);
+            threadPool.shutdown();
+        }
+        return mp3FileInformationDto;
+    }
+
+
     public static List<Mp3FileInformationDto> processInBatch(Path[] pathsToFiles) {
 
         List<Mp3FileInformationDto> dtos = new ArrayList<>();

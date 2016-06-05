@@ -6,6 +6,8 @@ import java.util.function.Function;
 /**
  * Papers
  * https://cseweb.ucsd.edu/~akmenon/ResearchExam.pdf
+ *
+ * http://leon.bottou.org/publications/pdf/jmlr-2005.pdf
  */
 public class SupportVectorMachineImpl implements SupportVectorMachine {
 

@@ -39,9 +39,8 @@ public class ArrayUtils {
     }
 
     public static double[] createArrayWithLengthOfPowerOfTwoByAddingZeroes(double[] transformedData) {
-        int arrayLength = transformedData.length;
-        double powerOfTwo = Math.ceil(Math.log(arrayLength) / Math.log(2));
-        int numberOfZeroesToAdd = (int) Math.pow(2, powerOfTwo) - arrayLength;
+        double powerOfTwo = Math.ceil(Math.log(transformedData.length) / Math.log(2));
+        int numberOfZeroesToAdd = (int) Math.pow(2, powerOfTwo) - transformedData.length;
         double[] arrayWithZeroes = createArrayWithZeroesWithGivenLength(numberOfZeroesToAdd);
 
         return appendToArray(transformedData, arrayWithZeroes);
@@ -73,22 +72,19 @@ public class ArrayUtils {
 
     private static double[] appendToArray(double[] arrayWhereToAppend, double[] arrayWhatToAppend) {
 
-        int aLen = arrayWhereToAppend.length;
-        int bLen = arrayWhatToAppend.length;
-        double[] finalArray = new double[aLen + bLen];
+        double[] finalArray = new double[arrayWhereToAppend.length + arrayWhatToAppend.length];
 
-        System.arraycopy(arrayWhereToAppend, 0, finalArray, 0, aLen);
-        System.arraycopy(arrayWhatToAppend, 0, finalArray, aLen, bLen);
+        System.arraycopy(arrayWhereToAppend, 0, finalArray, 0, arrayWhereToAppend.length);
+        System.arraycopy(arrayWhatToAppend, 0, finalArray, arrayWhereToAppend.length, arrayWhatToAppend.length);
 
         return finalArray;
     }
 
     public static double[] sortInDescendingOrder(double[] array) {
-        int len = array.length;
         double[] reversedOrder = new double[array.length];
         Arrays.sort(array);
-        for (int i = 0; i < len; i++) {
-            reversedOrder[i] = array[len - i - 1];
+        for (int i = 0; i < array.length; i++) {
+            reversedOrder[i] = array[array.length - i - 1];
         }
         return reversedOrder;
     }
