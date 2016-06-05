@@ -1,9 +1,4 @@
 # User-specific stuff:
 .idea
 music-recommendation-system.iml
-
-src/main/java/core/ml/
-src/test/java/mappers/
-src/test/java/core.utils/
-target/
-core.log
+.log
