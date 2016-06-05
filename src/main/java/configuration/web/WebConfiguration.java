@@ -1,6 +1,6 @@
 package configuration.web;
 
-import configuration.database.DataBaseConfiguration;
+import configuration.database.DataBaseContextConfiguration;
 import configuration.security.SecurityConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -12,9 +12,9 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 
 @Configuration
 @EnableWebMvc
-@Import({DataBaseConfiguration.class, SecurityConfiguration.class})
+@Import({DataBaseContextConfiguration.class, SecurityConfiguration.class})
 
-@ComponentScan(basePackages = {"controllers", "core", "database", "service"})
+@ComponentScan(basePackages = {"controllers", "core", "repository", "service"})
 class WebConfiguration extends WebMvcConfigurerAdapter {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
