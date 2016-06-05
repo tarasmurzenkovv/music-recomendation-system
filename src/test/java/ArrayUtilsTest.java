@@ -1,7 +1,7 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-import static utils.ArrayUtils.*;
+import static core.utils.ArrayUtils.*;
 
 public class ArrayUtilsTest {
     @Test

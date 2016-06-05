@@ -1,8 +1,8 @@
-package mp3.processing;
+package core.mp3.processing;
 
 import javazoom.jl.decoder.BitstreamException;
 import javazoom.jl.decoder.DecoderException;
-import mp3.dtos.Mp3FileInformationDto;
+import core.mp3.dtos.Mp3FileInformationDto;
 import org.apache.commons.math3.complex.Complex;
 import org.apache.log4j.Logger;
 
@@ -11,8 +11,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.Callable;
 
-import static mp3.utils.Mp3Utils.computeFrequencies;
-import static mp3.utils.Mp3Utils.performFftOnTheGivenMp3File;
+import static core.mp3.utils.Mp3Utils.computeFrequencies;
+import static core.mp3.utils.Mp3Utils.performFftOnTheGivenMp3File;
 
 public class ProcessingTask implements Callable<Mp3FileInformationDto> {
     private final static Logger logger = Logger.getLogger(ProcessingTask.class);

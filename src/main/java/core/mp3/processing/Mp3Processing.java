@@ -1,6 +1,6 @@
-package mp3.processing;
+package core.mp3.processing;
 
-import mp3.dtos.Mp3FileInformationDto;
+import core.mp3.dtos.Mp3FileInformationDto;
 import org.apache.log4j.Logger;
 
 import java.io.File;

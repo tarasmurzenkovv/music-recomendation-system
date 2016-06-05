@@ -2,8 +2,8 @@
 .idea
 music-recommendation-system.iml
 
-src/main/java/ml/
+src/main/java/core/ml/
 src/test/java/mappers/
-src/test/java/utils/
+src/test/java/core.utils/
 target/
 core.log

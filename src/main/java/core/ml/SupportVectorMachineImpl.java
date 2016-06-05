@@ -1,6 +1,4 @@
-package ml;
-
-import mp3.dtos.Mp3FileInformationDto;
+package core.ml;
 
 import java.util.List;
 import java.util.function.Function;

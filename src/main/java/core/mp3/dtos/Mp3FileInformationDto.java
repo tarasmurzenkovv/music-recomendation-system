@@ -1,4 +1,4 @@
-package mp3.dtos;
+package core.mp3.dtos;
 
 import java.util.Arrays;
 

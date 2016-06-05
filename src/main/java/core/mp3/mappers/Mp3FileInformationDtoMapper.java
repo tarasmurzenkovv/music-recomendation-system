@@ -1,6 +1,6 @@
-package mp3.mappers;
+package core.mp3.mappers;
 
-import mp3.dtos.Mp3FileInformationDto;
+import core.mp3.dtos.Mp3FileInformationDto;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 

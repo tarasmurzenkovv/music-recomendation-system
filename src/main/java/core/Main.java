@@ -1,4 +1,6 @@
-import mp3.dtos.Mp3FileInformationDto;
+package core;
+
+import core.mp3.dtos.Mp3FileInformationDto;
 
 import java.io.File;
 import java.io.IOException;
@@ -10,8 +12,8 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import static mp3.mappers.Mp3FileInformationDtoMapper.toJson;
-import static mp3.processing.Mp3Processing.*;
+import static core.mp3.mappers.Mp3FileInformationDtoMapper.toJson;
+import static core.mp3.processing.Mp3Processing.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {

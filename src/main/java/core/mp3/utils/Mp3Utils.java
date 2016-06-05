@@ -1,20 +1,20 @@
-package mp3.utils;
+package core.mp3.utils;
 
 import javazoom.jl.decoder.*;
-import mp3.dtos.Mp3FileInformationDto;
+import core.mp3.dtos.Mp3FileInformationDto;
 import org.apache.commons.math3.complex.Complex;
 import org.apache.commons.math3.transform.DftNormalization;
 import org.apache.commons.math3.transform.FastFourierTransformer;
 import org.apache.commons.math3.transform.TransformType;
-import utils.ArrayUtils;
+import core.utils.ArrayUtils;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static utils.ArrayUtils.getTrimmedNumberOfElements;
-import static utils.ArrayUtils.sortInDescendingOrder;
+import static core.utils.ArrayUtils.getTrimmedNumberOfElements;
+import static core.utils.ArrayUtils.sortInDescendingOrder;
 
 public class Mp3Utils {
 

@@ -1,4 +1,4 @@
-package mp3.utils;
+package core.mp3.utils;
 
 import javazoom.jl.player.Player;
 
