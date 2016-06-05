@@ -21,6 +21,7 @@
         <hibernate>5.1.0.Final</hibernate>
         <spring-data>1.10.1.RELEASE</spring-data>
         <liquibase>3.5.1</liquibase>
+        <javax.servlet-api>3.1.0</javax.servlet-api>
     </properties>
     <dependencies>
         <dependency>
@@ -64,7 +65,6 @@
             <artifactId>hibernate-c3p0</artifactId>
             <version>${hibernate}</version>
         </dependency>
-
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
@@ -85,19 +85,11 @@
             <artifactId>smile-core</artifactId>
             <version>1.1.0</version>
         </dependency>
-
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.0.1</version>
-            <scope>provided</scope>
+            <version>${javax.servlet-api}</version>
         </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
-
     </dependencies>
     <build>
         <plugins>
@@ -110,7 +102,6 @@
                     <target>${target}</target>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>

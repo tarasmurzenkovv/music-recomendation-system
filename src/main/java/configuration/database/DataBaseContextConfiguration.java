@@ -20,20 +20,20 @@ import java.io.InputStream;
 import java.util.Properties;
 
 @Configuration
-@PropertySource("classpath:database/connection_pool.properties")
+@PropertySource("classpath:database/hibernate.properties")
 @EnableTransactionManagement
 @EnableJpaRepositories("repository")
 public class DataBaseContextConfiguration {
     private final static int EXIT_STATUS_CODE = 666;
     Logger logger = Logger.getLogger(DataBaseContextConfiguration.class);
 
-    @Value("${login}")
+    @Value("${hibernate.connection.username}")
     private String login;
-    @Value("${password}")
+    @Value("${hibernate.connection.password}")
     private String password;
-    @Value("${jdbc_url}")
+    @Value("${hibernate.connection.url }")
     private String jdbcUrl;
-    @Value("${driver_name}")
+    @Value("${hibernate.connection.driver_class}")
     private String driverName;
 
     @Bean
