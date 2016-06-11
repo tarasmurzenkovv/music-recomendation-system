@@ -7,16 +7,26 @@ import org.apache.commons.math3.transform.DftNormalization;
 import org.apache.commons.math3.transform.FastFourierTransformer;
 import org.apache.commons.math3.transform.TransformType;
 import core.utils.ArrayUtils;
+import org.apache.log4j.Logger;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+import java.util.stream.Collectors;
 
+import static core.utils.ArrayUtils.appendToArray;
 import static core.utils.ArrayUtils.getTrimmedNumberOfElements;
 import static core.utils.ArrayUtils.sortInDescendingOrder;
 
 public class Mp3Utils {
+    private final static Logger logger = Logger.getLogger(Mp3Utils.class);
+    private final static ExecutorService threadPool = Executors.newFixedThreadPool(3);
 
     public static double[] computeFrequencies(Complex[] fourierSpectre, int topNumber) {
         double[] computedFrequencies = new double[fourierSpectre.length];
@@ -44,9 +54,36 @@ public class Mp3Utils {
         while ((frameHeader = bitStream.readFrame()) != null) {
             SampleBuffer output = (SampleBuffer) decoder.decodeFrame(frameHeader, bitStream); //returns the next 2304 samples
             short[] next = output.getBuffer();
-            decodedMp3StreamInBytes = ArrayUtils.appendToArray(decodedMp3StreamInBytes, next);
+            decodedMp3StreamInBytes = appendToArray(decodedMp3StreamInBytes, next);
             bitStream.closeFrame();
         }
+        return decodedMp3StreamInBytes;
+    }
+
+    public static short[] getDecodedMp3StreamConcurrentVersion(String pathToMp3File) throws FileNotFoundException, BitstreamException, DecoderException {
+        short[] decodedMp3StreamInBytes = new short[]{};
+        Bitstream bitStream = new Bitstream(new FileInputStream(pathToMp3File));
+        Header frameHeader;
+        List<Future<short[]>> expectedResults = new LinkedList<>();
+        int numberOfReadHeaders = 0;
+        while (((frameHeader = bitStream.readFrame()) != null) && ((numberOfReadHeaders++) < 1000)) {
+            expectedResults.add(threadPool.submit(new DecodingTask(frameHeader, bitStream)));
+        }
+        List<short[]> collectedResults = expectedResults
+                .stream()
+                .map(expectedResult -> {
+                    try {
+                        return expectedResult.get();
+                    } catch (InterruptedException | ExecutionException e) {
+                        logger.error("Unable to execute task. Error: ", e);
+                        return null;
+                    }
+                })
+                .collect(Collectors.toList());
+        for (short[] portion : collectedResults) {
+            decodedMp3StreamInBytes = appendToArray(decodedMp3StreamInBytes, portion);
+        }
+        threadPool.shutdown();
         return decodedMp3StreamInBytes;
     }
 

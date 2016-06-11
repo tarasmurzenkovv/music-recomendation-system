@@ -20,7 +20,7 @@ import java.io.InputStream;
 import java.util.Properties;
 
 @Configuration
-@PropertySource("classpath:database/hibernate.properties")
+@PropertySource("classpath:/database/hibernate.properties")
 @EnableTransactionManagement
 @EnableJpaRepositories("repository")
 public class DataBaseContextConfiguration {
@@ -31,7 +31,7 @@ public class DataBaseContextConfiguration {
     private String login;
     @Value("${hibernate.connection.password}")
     private String password;
-    @Value("${hibernate.connection.url }")
+    @Value("${hibernate.connection.url}")
     private String jdbcUrl;
     @Value("${hibernate.connection.driver_class}")
     private String driverName;

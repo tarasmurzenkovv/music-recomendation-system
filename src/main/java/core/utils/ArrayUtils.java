@@ -38,6 +38,19 @@ public class ArrayUtils {
 
     }
 
+    public static double[] transformToDoubleArrayWithLengthOfPowerOfTwo(byte[] decodedBytes) {
+        double[] transformedData = new double[decodedBytes.length];
+
+        for (int i = 0; i < decodedBytes.length; i++) {
+            transformedData[i] = (double) decodedBytes[i];
+        }
+
+        return (isPowerOfTwo(transformedData.length))
+                ? transformedData
+                : createArrayWithLengthOfPowerOfTwoByAddingZeroes(transformedData);
+
+    }
+
     public static double[] createArrayWithLengthOfPowerOfTwoByAddingZeroes(double[] transformedData) {
         double powerOfTwo = Math.ceil(Math.log(transformedData.length) / Math.log(2));
         int numberOfZeroesToAdd = (int) Math.pow(2, powerOfTwo) - transformedData.length;
@@ -60,6 +73,9 @@ public class ArrayUtils {
 
     public static short[] appendToArray(short[] arrayWhereToAppend, short[] arrayWhatToAppend) {
 
+        if (arrayWhatToAppend == null) {
+            return arrayWhereToAppend;
+        }
         int aLen = arrayWhereToAppend.length;
         int bLen = arrayWhatToAppend.length;
         short[] finalArray = new short[aLen + bLen];

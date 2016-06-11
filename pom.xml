@@ -13,6 +13,7 @@
         <target>1.8</target>
         <maven-compiler>3.5.1</maven-compiler>
         <junit-version>4.12</junit-version>
+        <spring-test>4.2.6.RELEASE</spring-test>
         <log4j>1.2.17</log4j>
         <jackson>1.9.13</jackson>
         <commons-math3>3.2</commons-math3>
@@ -22,6 +23,7 @@
         <spring-data>1.10.1.RELEASE</spring-data>
         <liquibase>3.5.1</liquibase>
         <javax.servlet-api>3.1.0</javax.servlet-api>
+        <mysql>6.0.2</mysql>
     </properties>
     <dependencies>
         <dependency>
@@ -29,6 +31,12 @@
             <artifactId>junit</artifactId>
             <version>${junit-version}</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring-test}</version>
         </dependency>
         <dependency>
             <groupId>log4j</groupId>
@@ -89,6 +97,11 @@
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>${javax.servlet-api}</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql}</version>
         </dependency>
     </dependencies>
     <build>
