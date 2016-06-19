@@ -13,9 +13,19 @@ class Genre {
     @Column(name = "genre")
     private String genreName;
 
-    @OneToMany(mappedBy = "track", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "genre", cascade = CascadeType.ALL)
     private Set<Track> tracks;
 
+    public Genre() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public Genre(String genreName) {
         this.genreName = genreName;

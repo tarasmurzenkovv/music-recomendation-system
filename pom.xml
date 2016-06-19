@@ -23,7 +23,8 @@
         <spring-data>1.10.1.RELEASE</spring-data>
         <liquibase>3.5.1</liquibase>
         <javax.servlet-api>3.1.0</javax.servlet-api>
-        <mysql>6.0.2</mysql>
+        <mysql>5.1.38</mysql>
+        <spring-security>3.1.0.RELEASE</spring-security>
     </properties>
     <dependencies>
         <dependency>
@@ -32,7 +33,6 @@
             <version>${junit-version}</version>
             <scope>test</scope>
         </dependency>
-
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-test</artifactId>
@@ -59,6 +59,11 @@
             <version>${jLayer-version}</version>
         </dependency>
         <dependency>
+            <groupId>com.googlecode.soundlibs</groupId>
+            <artifactId>tritonus-share</artifactId>
+            <version>0.3.7-3</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${spring-mvc}</version>
@@ -83,6 +88,25 @@
             <artifactId>spring-data-jpa</artifactId>
             <version>${spring-data}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>4.0.2.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>4.0.2.RELEASE</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>4.0.2.RELEASE</version>
+        </dependency>
+
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-maven-plugin</artifactId>

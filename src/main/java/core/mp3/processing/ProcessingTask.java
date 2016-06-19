@@ -11,8 +11,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.concurrent.Callable;
 
-import static core.mp3.utils.Mp3Utils.computeFrequencies;
-import static core.mp3.utils.Mp3Utils.performFftOnTheGivenMp3File;
+import static core.mp3.mp3utils.Mp3Utils.computeFrequencies;
+import static core.mp3.mp3utils.Mp3Utils.performFftOnTheGivenMp3File;
 
 public class ProcessingTask implements Callable<Mp3FileInformationDto> {
     private final static Logger logger = Logger.getLogger(ProcessingTask.class);

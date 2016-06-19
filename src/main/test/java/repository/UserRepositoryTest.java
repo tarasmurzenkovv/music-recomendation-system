@@ -28,5 +28,4 @@ public class UserRepositoryTest {
         userRepository.save(user);
         assertEquals(user, new User("test_login", "test_email"));
     }
-
 }

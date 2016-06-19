@@ -104,4 +104,14 @@ public class ArrayUtils {
         }
         return reversedOrder;
     }
+
+    public static boolean isAllElementAreZeros(short[] array) {
+        double sum = 0;
+
+        for (short elem : array) {
+            sum += elem;
+        }
+
+        return sum == 0.0;
+    }
 }

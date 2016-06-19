@@ -1,0 +1,1 @@
+musicRecommendationSystem.controller('MainController', [function () {}]);

@@ -13,6 +13,7 @@ public class User {
     private Long id;
     private String login;
     private String email;
+
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private Set<Track> tracks;
 

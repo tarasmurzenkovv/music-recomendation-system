@@ -25,7 +25,7 @@ import java.util.Properties;
 @EnableJpaRepositories("repository")
 public class DataBaseContextConfiguration {
     private final static int EXIT_STATUS_CODE = 666;
-    Logger logger = Logger.getLogger(DataBaseContextConfiguration.class);
+    private static final Logger logger = Logger.getLogger(DataBaseContextConfiguration.class);
 
     @Value("${hibernate.connection.username}")
     private String login;
