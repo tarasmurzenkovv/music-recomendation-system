@@ -1,25 +1,29 @@
 <html ng-app='musicRecommendationSystem'>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
     <script type="text/javascript" src="https://code.angularjs.org/1.4.9/angular.js"></script>
     <script type="text/javascript" src="https://code.angularjs.org/1.4.9/angular-route.js"></script>
     <script type="text/javascript" src="https://code.angularjs.org/1.4.9/angular-cookies.js"></script>
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-2.1.4.js"></script>
-    <script type="text/javascript" src="http://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
 
     <script type="text/javascript" src="/js/Main.js"></script>
     <script type="text/javascript" src="/js/Routing.js"></script>
-    <script type="text/javascript" src="/js/controllers/MainPageController.js"></script>
 
-    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.6.0/pure-min.css">
-    <link rel="stylesheet" href="/css/landing.css">
+    <script type="text/javascript" src="/js/controllers/MainController.js"></script>
+    <script type="text/javascript" src="/js/controllers/LandingPageController.js"></script>
+
+
+    <link rel="stylesheet" href="/html/css/landing.css">
 
     <title>Gas Station Service</title>
 </head>
+
+
 <body>
-<div class=".main-container">
+<div id="main-container">
     <ng-view></ng-view>
 </div>
 </body>
+
+
 </html>

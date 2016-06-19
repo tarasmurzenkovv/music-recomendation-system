@@ -2,9 +2,9 @@ musicRecommendationSystem.config(['$routeProvider', '$httpProvider', '$locationP
     function ($routeProvider) {
         //$httpProvider.interceptors.push('responseObserver');
         $routeProvider
-            .when('#/landing', {
+            .when('/landing', {
                 templateUrl: '/html/landing.html',
-                controller: 'MainPageController'
+                controller: 'MainController'
             })
     }
 ]);
