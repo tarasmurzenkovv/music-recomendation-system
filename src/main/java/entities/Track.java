@@ -32,7 +32,12 @@ public class Track {
     public Track() {
     }
 
-    public Track(String trackName, Double duration, String artistName) {
+    public Track(Long id, String trackName) {
+        this.id = id;
+        this.trackName = trackName;
+    }
+
+    public Track(String trackName, double duration, String artistName) {
         this.trackName = trackName;
         this.duration = duration;
         this.artistName = artistName;

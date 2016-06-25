@@ -16,6 +16,7 @@
         <spring-test>4.2.6.RELEASE</spring-test>
         <log4j>1.2.17</log4j>
         <jackson>1.9.13</jackson>
+        <jackson-databind>2.5.0</jackson-databind>
         <commons-math3>3.2</commons-math3>
         <jLayer-version>1.0.1-1</jLayer-version>
         <spring-mvc>4.2.6.RELEASE</spring-mvc>
@@ -126,6 +127,12 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind}</version>
         </dependency>
     </dependencies>
     <build>
