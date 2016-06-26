@@ -9,7 +9,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import static core.mp3.mp3utils.Mp3Utils.*;
+import static utils.FftUtils.performFftOnTheGivenMp3File;
+import static utils.FrequencyUtils.computeFrequencies;
+import static utils.FrequencyUtils.extractFrequencyDomain;
+import static utils.Mp3Utils.*;
 
 public class Mp3UtilsTest {
 

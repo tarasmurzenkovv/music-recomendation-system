@@ -18,6 +18,10 @@ musicRecommendationSystem.config(['$routeProvider',
                 templateUrl: '/html/dashboard.html',
                 controller: 'PlayListController'
             })
+            .when('/upload_track',{
+                templateUrl:'/html/upload_track.html',
+                controller:'TrackController'
+            })
     }
 ]);
 

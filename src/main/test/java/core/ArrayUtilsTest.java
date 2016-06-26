@@ -3,7 +3,7 @@ package core;
 import org.junit.Assert;
 import org.junit.Test;
 
-import static core.utils.ArrayUtils.*;
+import static utils.ArrayUtils.*;
 
 public class ArrayUtilsTest {
     @Test

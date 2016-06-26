@@ -1,15 +1,15 @@
-package core.mp3.mappers;
+package utils;
 
-import core.mp3.dtos.Mp3FileInformationDto;
+import entities.Track;
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.map.ObjectMapper;
 
 import java.io.IOException;
 
 
-public class Mp3FileInformationDtoMapper {
-    private final static Logger logger = Logger.getLogger(Mp3FileInformationDtoMapper.class);
-    public static String toJson(Mp3FileInformationDto dto) {
+public class JsonUtils {
+    private final static Logger logger = Logger.getLogger(JsonUtils.class);
+    public static String toJson(Track dto) {
         String json = "";
         ObjectMapper mapper = new ObjectMapper();
         try {
@@ -20,11 +20,11 @@ public class Mp3FileInformationDtoMapper {
         return json;
     }
 
-    public static Mp3FileInformationDto fromJson(String json) {
-        Mp3FileInformationDto dto;
+    public static Track fromJson(String json) {
+        Track dto;
         ObjectMapper mapper = new ObjectMapper();
         try {
-            dto = mapper.readValue(json, Mp3FileInformationDto.class);
+            dto = mapper.readValue(json, Track.class);
         } catch (IOException e) {
             logger.error(String.format("Unable to convert given %s to Mp3FileInformationDto class. Null will be returned", json), e);
             return null;

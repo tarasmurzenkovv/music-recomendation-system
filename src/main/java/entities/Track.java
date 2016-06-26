@@ -28,6 +28,7 @@ public class Track {
     @ManyToOne
     @JoinColumn(name = "genre_id", foreignKey = @ForeignKey(name = "genre_id"))
     private Genre genre;
+    private double[] frequencies;
 
     public Track() {
     }
@@ -97,6 +98,10 @@ public class Track {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
+    }
+
+    public void setFrequencies(double[] frequencies) {
+        this.frequencies = frequencies;
     }
 
     @Override
