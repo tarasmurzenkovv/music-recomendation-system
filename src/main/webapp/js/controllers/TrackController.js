@@ -1,4 +1,4 @@
-musicRecommendationSystem.controller('TrackController', ['$scope', 'fileUpload', function($scope, fileUpload){
+musicRecommendationSystem.controller('TrackController', ['$scope', 'TrackService', function($scope, fileUpload){
     $scope.uploadFile = function(){
         var file = $scope.myFile;
 
