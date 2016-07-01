@@ -3,6 +3,7 @@ package service.processing;
 import entities.Track;
 import org.apache.commons.io.FileUtils;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +14,7 @@ import java.util.concurrent.*;
 
 public class Mp3Processing {
     private final static Logger logger = Logger.getLogger(Mp3Processing.class);
-    private final static ExecutorService threadPool = Executors.newCachedThreadPool();
+    private final static ExecutorService threadPool = ThreadExecutor.getTrackProcessingExecutor();
 
     public static Track processTrack(Path pathToFile) {
         Track mp3FileInformationDto = null;
