@@ -1,6 +1,3 @@
-
-/*http://blackrockdigital.github.io/startbootstrap-sb-admin/*/
-
 .custom-button {
     background-color: #ffcc80;
     color: white;
@@ -66,12 +63,17 @@ a.custom-button-primary {
 }
 
 .pure-menu-item {
-    height: 5%;
+    height: 4%;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    margin-left: 15px;
+    margin-right: 15px;
+    text-align: left;
 }
 
 .pure-menu-list {
     display: inline-block;
     background-color: black;
-    height: 100%;
+    height: 95.5%;
 }
 
