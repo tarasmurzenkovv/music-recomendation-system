@@ -1,4 +1,4 @@
-musicRecommendationSystem.controller('PlayListController', ['$scope', '$http', 'PlayListService',
+musicRecommendationSystem.controller('RecommendationController', ['$scope', '$http', 'PlayListService',
     function ($scope, $http, PlayListService) {
 
         angular.element(document).ready(function () {

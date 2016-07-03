@@ -1,9 +1,8 @@
 musicRecommendationSystem.config(['$routeProvider',
     function ($routeProvider) {
-        //$httpProvider.interceptors.push('responseObserver');
         $routeProvider
             .when('/main', {
-                templateUrl: '/html/main.html',
+                templateUrl: '/html/landing.html',
                 controller: 'MainController'
             })
             .when('/login', {
@@ -14,13 +13,25 @@ musicRecommendationSystem.config(['$routeProvider',
                 templateUrl: '/html/register.html',
                 controller: 'AuthorisationController'
             })
-            .when('/playlist', {
-                templateUrl: '/html/dashboard.html',
-                controller: 'PlayListController'
+            .when('/discover', {
+                templateUrl: '/html/discover.html',
+                controller: 'RecommendationController'
             })
-            .when('/upload_track',{
-                templateUrl:'/html/upload_track.html',
-                controller:'TrackController'
+            .when('/stream', {
+                templateUrl: '/html/stream.html',
+                controller: 'StreamController'
+            })
+            .when('/friend_activity', {
+                templateUrl: '/html/friend_activity.html',
+                controller: 'FriendActivityController'
+            })
+            .when('/collection', {
+                templateUrl: '/html/collection.html',
+                controller: 'CollectionController'
+            })
+            .when('/about', {
+                templateUrl: '/html/about.html',
+                controller: 'AboutController'
             })
     }
 ]);

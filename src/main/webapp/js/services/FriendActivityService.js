@@ -1,0 +1,3 @@
+musicRecommendationSystem.service('FriendActivityService', [function () {
+
+}]);
