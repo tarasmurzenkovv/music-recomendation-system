@@ -2,8 +2,6 @@ language: java
 notifications:
   email:
     - murzenkovtn@gmail.com
-sudo:
-  -false
 jdk:
   - oraclejdk8
 script:
