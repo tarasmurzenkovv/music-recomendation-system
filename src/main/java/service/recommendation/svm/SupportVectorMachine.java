@@ -1,12 +1,5 @@
 package service.recommendation.svm;
 
-import libsvm.LibSVM;
-import net.sf.javaml.classification.Classifier;
-import net.sf.javaml.core.Dataset;
-import net.sf.javaml.core.Instance;
-import net.sf.javaml.tools.data.FileHandler;
-
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
