@@ -14,11 +14,6 @@ a.custom-button-primary {
     text-decoration: none;
 }
 
-/*
- * -- SPLASH STYLES --
- * This is the blue section that appears on the page.
- */
-
 .splash-container-blue {
     background: #1f8dd6;
     z-index: 1;
@@ -32,7 +27,6 @@ a.custom-button-primary {
 }
 
 .splash {
-    /* absolute center .splash within .splash-container */
     width: 80%;
     height: 50%;
     margin: auto;
@@ -45,7 +39,6 @@ a.custom-button-primary {
     text-transform: uppercase;
 }
 
-/* This is the main heading that appears on the blue section */
 .splash-head {
     font-size: 90px;
     font-weight: bold;
@@ -54,7 +47,6 @@ a.custom-button-primary {
     padding: 0;
 }
 
-/* This is the subheading that appears on the blue section */
 .splash-subhead {
     color: white;
     letter-spacing: 0.05em;
@@ -64,11 +56,8 @@ a.custom-button-primary {
 
 .pure-menu-item {
     height: 4%;
-    margin-bottom: 15px;
-    margin-top: 15px;
-    margin-left: 15px;
-    margin-right: 15px;
     text-align: left;
+    text-transform: uppercase;
 }
 
 .pure-menu-list {
@@ -76,4 +65,9 @@ a.custom-button-primary {
     background-color: black;
     height: 95.5%;
 }
-
+.pure-menu-link:hover {
+    background-color: white;
+}
+.pure-menu-heading{
+    padding-left: 3px;
+}

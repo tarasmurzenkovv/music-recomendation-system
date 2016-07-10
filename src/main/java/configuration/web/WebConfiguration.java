@@ -22,10 +22,6 @@ import javax.servlet.MultipartConfigElement;
 
 @ComponentScan(basePackages = {"controllers", "repository", "service"})
 class WebConfiguration extends WebMvcConfigurerAdapter {
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/*").addResourceLocations("/resources/");
-    }
 
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
