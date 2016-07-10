@@ -1,0 +1,8 @@
+language: java
+notifications:
+  email:
+    - murzenkovtn@gmail.com
+jdk:
+  - oraclejdk8
+script:
+  - mvn clean package
